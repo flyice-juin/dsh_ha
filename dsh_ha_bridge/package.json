@@ -1,0 +1,44 @@
+{
+  "name": "dsh-ha-bridge",
+  "version": "0.3.0",
+  "description": "Expose DeepSeek Harness sessions over a token-protected LAN HTTP API for Home Assistant, with a loopback-only setup page that generates and rotates the token.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "home-assistant",
+    "homeassistant",
+    "bridge"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20",
+    "dsh": ">=0.2.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

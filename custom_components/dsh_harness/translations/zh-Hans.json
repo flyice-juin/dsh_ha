@@ -1,0 +1,86 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "连接 DeepSeek Harness",
+        "description": "指向运行在电脑里 DeepSeek Harness 中的桥接插件。",
+        "data": {
+          "host": "主机地址",
+          "port": "端口",
+          "token": "桥接令牌"
+        },
+        "data_description": {
+          "host": "运行 DeepSeek Harness 的电脑在局域网里的地址。",
+          "port": "桥接插件监听的端口（默认 43131）。",
+          "token": "在运行 DeepSeek Harness 的电脑上打开 http://127.0.0.1:43131/ 查看（或轮换）令牌。"
+        }
+      },
+      "reauth_confirm": {
+        "title": "更新桥接令牌",
+        "description": "{host} 上的桥接插件拒绝了这个令牌。",
+        "data": {
+          "token": "桥接令牌"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "桥接插件拒绝了这个令牌。",
+      "cannot_connect": "连不上桥接插件。检查地址、端口，确认已安装 dsh-ha-bridge 插件，以及 DeepSeek Harness 是否在运行。",
+      "unknown": "未知错误，请看 Home Assistant 日志。"
+    },
+    "abort": {
+      "already_configured": "这个桥接已经配置过了。"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "DeepSeek Harness 选项",
+        "data": {
+          "panel_title": "面板名称",
+          "scan_interval": "轮询间隔",
+          "web_port": "工作台端口",
+          "web_mode": "工作台接入方式"
+        },
+        "data_description": {
+          "panel_title": "这个主机在侧边栏显示的名字，每个主机一个面板。留空就用 Home Assistant 给条目起的名字。",
+          "scan_interval": "两次会话列表刷新之间的秒数。",
+          "web_port": "ha-workbench 插件监听的端口（默认 43132）。",
+          "web_mode": "proxied 经 Home Assistant 转发，走穿透也能用；direct 直接框电脑的地址，只能在局域网用。"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "sessions": {
+        "name": "会话数"
+      },
+      "running": {
+        "name": "执行中"
+      },
+      "waiting": {
+        "name": "等待回答"
+      }
+    },
+    "binary_sensor": {
+      "busy": {
+        "name": "正在工作"
+      }
+    }
+  },
+  "services": {
+    "send_prompt": {
+      "name": "下达指令",
+      "description": "向某个会话排队（或插话）一条指令。"
+    },
+    "cancel": {
+      "name": "中断任务",
+      "description": "中断会话当前这一轮，队列里的指令保留。"
+    },
+    "wait": {
+      "name": "等待结果",
+      "description": "等到会话空闲，并返回最近的消息。"
+    }
+  }
+}

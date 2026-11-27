@@ -1,0 +1,18 @@
+# dsh-ha-workbench: one Host row serving the Harness Web GUI behind a path
+# prefix, so the Home Assistant sidebar panel can frame the real workbench.
+#
+# Deliberately no `token:` here. The path prefix *is* the credential, and it has
+# to be the bridge's token because Home Assistant builds the panel URL from the
+# token it already stores in its config entry. dsh-ha-bridge mints that token
+# into $DSH_HOME/ha-bridge/state.json on first start; this plugin reads the same
+# file (and waits for it when both plugins load in one batch).
+#
+# Pin a value only if you also pinned one for the bridge:
+#   token: 'the-same-string'
+- insert:
+    - id: ha-workbench
+      name: dsh-ha-workbench
+      config:
+        host: 0.0.0.0
+        port: 43132
+        webHost: 127.0.0.1

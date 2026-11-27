@@ -1,0 +1,10 @@
+{
+  "domain": "dsh_harness",
+  "name": "DeepSeek Harness",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/deepseek-ai/deepseek-harness",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "version": "0.1.1"
+}

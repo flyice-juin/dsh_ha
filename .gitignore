@@ -1,0 +1,59 @@
+# ============================================================
+#  dsh_harness —— Home Assistant × DeepSeek Harness
+#  只提交源码；构建产物、依赖、缓存、本机令牌不入库。
+# ============================================================
+
+# ---- 发布 / 构建产物 ---------------------------------------
+# scripts/build-release.ps1 生成的 dist/：
+#   *.tgz、latest.json、release/（SKILL、fetch 脚本、README 的副本）
+#   setup-page.png（装机页截图，仅本机留档）
+dist/
+*.tgz
+
+# 面板工程（vite outDir 也是 dist，上一行已覆盖）
+.vite/
+*.tsbuildinfo
+
+# 注意：custom_components/dsh_harness/frontend/dsh_harness-panel.js
+#      是随集成分发的面板本体（手写源码，非构建产物），必须入库，勿忽略。
+
+# ---- Node 依赖 ---------------------------------------------
+node_modules/
+.pnpm-store/
+coverage/
+
+# ---- Python（HA 自定义集成）--------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- 日志 / 临时文件 ---------------------------------------
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-error.log*
+*.tmp
+*.bak
+*.orig
+
+# ---- 密钥 / 本机状态 ---------------------------------------
+# 插件令牌由 dsh-ha-bridge 首次启动时生成，落在
+# $DSH_HOME/ha-bridge/state.json（仓库外）。这里再兜一层，防误提交。
+.env
+.env.*
+*.pem
+*.key
+state.json
+
+# ---- 编辑器 / 操作系统 -------------------------------------
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+Desktop.ini

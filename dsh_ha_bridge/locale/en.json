@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Home Assistant bridge",
+    "description": "Serves a token-protected LAN HTTP API for listing sessions, sending prompts, and cancelling runs. Read or rotate the token at http://127.0.0.1:43131/."
+  }
+}

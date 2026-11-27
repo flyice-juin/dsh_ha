@@ -1,0 +1,42 @@
+{
+  "name": "dsh-ha-workbench",
+  "version": "0.1.0",
+  "description": "Serve the DeepSeek Harness Web GUI behind a path prefix so a Home Assistant sidebar panel can frame the real workbench.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "lib/proxy.js",
+    "lib/cookie.js",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "home-assistant",
+    "homeassistant",
+    "workbench"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20",
+    "dsh": ">=0.2.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

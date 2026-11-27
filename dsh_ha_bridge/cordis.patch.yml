@@ -1,0 +1,18 @@
+# dsh-ha-bridge — one Host row serving a token-protected LAN HTTP API for
+# Home Assistant.
+#
+# Deliberately no `token:` here. The bridge mints a 128-bit token on first
+# start and persists it under $DSH_HOME/ha-bridge/state.json, so every machine
+# gets its own secret and the published package never carries one. Read or
+# rotate it from the loopback-only setup page: http://127.0.0.1:43131/
+#
+# An explicit `token:` below still works (and wins over the stored one) for
+# pre-0.3 installations that pinned a value; the setup page then only displays
+# it and refuses to rotate.
+- insert:
+    - id: ha-bridge
+      name: dsh-ha-bridge
+      config:
+        host: 0.0.0.0
+        port: 43131
+        timeZone: Asia/Shanghai

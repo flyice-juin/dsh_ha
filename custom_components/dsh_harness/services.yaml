@@ -1,0 +1,102 @@
+send_prompt:
+  name: Send prompt
+  description: Queue or steer a prompt into a DeepSeek Harness session.
+  fields:
+    entry_id:
+      name: Harness host
+      description: Which configured host to talk to. Only needed when more than one is set up.
+      selector:
+        text:
+    session_id:
+      name: Session
+      description: Target session id. Defaults to the most recently active session.
+      example: session-9a32745a-fad2-4376-8f73-bcad676d0429
+      selector:
+        text:
+    text:
+      name: Prompt
+      description: What to ask the harness to do.
+      required: true
+      example: 把刚才的改动跑一遍测试
+      selector:
+        text:
+          multiline: true
+    mode:
+      name: Delivery
+      description: Queue waits for the current turn; steer redirects it.
+      default: queue
+      selector:
+        select:
+          options:
+            - queue
+            - steer
+    wait:
+      name: Wait for the answer
+      description: Block until the harness settles, then return the reply.
+      default: false
+      selector:
+        boolean:
+    timeout:
+      name: Timeout
+      description: How long to wait for the answer, in seconds.
+      default: 120
+      selector:
+        number:
+          min: 1
+          max: 300
+          unit_of_measurement: s
+    max_messages:
+      name: Messages
+      description: How many trailing messages to return.
+      default: 20
+      selector:
+        number:
+          min: 1
+          max: 100
+
+cancel:
+  name: Cancel run
+  description: Cancel the active turn of a session without dropping its queue.
+  fields:
+    entry_id:
+      name: Harness host
+      description: Which configured host to talk to. Only needed when more than one is set up.
+      selector:
+        text:
+    session_id:
+      name: Session
+      description: Target session id. Defaults to the most recently active session.
+      selector:
+        text:
+
+wait:
+  name: Wait for result
+  description: Wait until a session settles and return its trailing messages.
+  fields:
+    entry_id:
+      name: Harness host
+      description: Which configured host to talk to. Only needed when more than one is set up.
+      selector:
+        text:
+    session_id:
+      name: Session
+      description: Target session id. Defaults to the most recently active session.
+      selector:
+        text:
+    timeout:
+      name: Timeout
+      description: How long to wait, in seconds.
+      default: 120
+      selector:
+        number:
+          min: 1
+          max: 300
+          unit_of_measurement: s
+    max_messages:
+      name: Messages
+      description: How many trailing messages to return.
+      default: 20
+      selector:
+        number:
+          min: 1
+          max: 100

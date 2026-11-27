@@ -1,0 +1,86 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to DeepSeek Harness",
+        "description": "Point Home Assistant at the bridge plugin running inside DeepSeek Harness on your PC.",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "token": "Bridge token"
+        },
+        "data_description": {
+          "host": "LAN address of the PC running DeepSeek Harness.",
+          "port": "Port the bridge plugin listens on (default 43131).",
+          "token": "Open http://127.0.0.1:43131/ on the PC running DeepSeek Harness to read (or rotate) it."
+        }
+      },
+      "reauth_confirm": {
+        "title": "Refresh the bridge token",
+        "description": "The bridge at {host} rejected the stored token.",
+        "data": {
+          "token": "Bridge token"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "The bridge rejected this token.",
+      "cannot_connect": "Cannot reach the bridge. Check the address, the port, and that the dsh-ha-bridge plugin is installed and DeepSeek Harness is running.",
+      "unknown": "Unexpected error; see the Home Assistant log."
+    },
+    "abort": {
+      "already_configured": "This bridge is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "DeepSeek Harness options",
+        "data": {
+          "panel_title": "Panel name",
+          "scan_interval": "Polling interval",
+          "web_port": "Workbench port",
+          "web_mode": "Workbench access"
+        },
+        "data_description": {
+          "panel_title": "Label of this host in the sidebar; every host gets its own panel. Leave it empty to use the name Home Assistant gave the entry.",
+          "scan_interval": "Seconds between session list refreshes.",
+          "web_port": "Port the ha-workbench plugin listens on (default 43132).",
+          "web_mode": "proxied streams the GUI through Home Assistant, so it also works through a tunnel. direct frames the PC's own address, which only works on the LAN."
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "sessions": {
+        "name": "Sessions"
+      },
+      "running": {
+        "name": "Running sessions"
+      },
+      "waiting": {
+        "name": "Waiting for input"
+      }
+    },
+    "binary_sensor": {
+      "busy": {
+        "name": "Working"
+      }
+    }
+  },
+  "services": {
+    "send_prompt": {
+      "name": "Send prompt",
+      "description": "Queue or steer a prompt into a DeepSeek Harness session."
+    },
+    "cancel": {
+      "name": "Cancel run",
+      "description": "Cancel the active turn of a session without dropping its queue."
+    },
+    "wait": {
+      "name": "Wait for result",
+      "description": "Wait until a session settles and return its trailing messages."
+    }
+  }
+}

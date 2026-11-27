@@ -1,0 +1,17 @@
+{
+  "name": "dsh-harness-panel",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "description": "Home Assistant sidebar panel for DeepSeek Harness sessions.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "ship": "npm run build && node scripts/sync.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  }
+}

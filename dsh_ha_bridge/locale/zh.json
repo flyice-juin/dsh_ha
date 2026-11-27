@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Home Assistant 桥",
+    "description": "提供带令牌保护的局域网 HTTP 接口：列会话、下指令、中断任务。令牌在 http://127.0.0.1:43131/ 上查看和轮换。"
+  }
+}
